@@ -1,0 +1,21 @@
+Issue 1- while fetching from DataTable, throws following error -
+io.cucumber.datatable.UndefinedDataTableTypeException: Can't convert DataTable to List<java.lang.String>.
+There was a table cell converter but the table was too wide to use it.
+Please reduce the table width or register a TableEntryTransformer or TableRowTransformer for java.lang.String
+
+Solution - use transpose() method while assigning datatable values to list, like this -
+           List<String> songDetails = table.transpose().asList();
+
+Issue 2 - Solve initialization error related to aventstack plugin -
+cucumber.runtime.CucumberException: Couldn't load plugin class: com.cucumber.listener.ExtentCucumberFormatter.
+It does not implement cucumber.api.Plugin.
+
+Solution - Use the following version of dependencies in build.gradle file
+               testImplementation("io.cucumber:cucumber-java:7.0.0")
+               testImplementation("io.cucumber:cucumber-junit:7.0.0")
+               implementation("org.seleniumhq.selenium:selenium-java:3.141.59")
+               implementation("org.seleniumhq.selenium:selenium-chrome-driver:3.141.59")
+               implementation("com.aventstack:extentreports:5.0.9")
+               implementation("tech.grasshopper:extentreports-cucumber7-adapter:1.7.0")
+
+
